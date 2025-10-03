@@ -1,4 +1,9 @@
-export const decodeJwt = (token: string): { header: any; payload: any } => {
+type JwtDecodeResult = {
+  header: string;
+  payload: string;
+};
+
+export const decodeJwt = (token: string): JwtDecodeResult => {
   try {
     const parts = token.split(".");
     if (parts.length !== 3) {
@@ -12,7 +17,7 @@ export const decodeJwt = (token: string): { header: any; payload: any } => {
       header: decodedHeader,
       payload: decodedPayload,
     };
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Error decoding JWT:", error);
     return {
       header: "Invalid JWT token",
