@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { decodeJwt } from "@/utils/jwtDecodeUtil";
+import { useToast } from "../components/toast";
 
 export default function JwtDecoderPage() {
   const [inputData, setInputData] = useState("");
@@ -9,6 +10,7 @@ export default function JwtDecoderPage() {
     header: string;
     payload: string;
   } | null>(null);
+  const { showToast } = useToast();
 
   const resetTextbox = () => {
     setInputData("");
@@ -23,6 +25,7 @@ export default function JwtDecoderPage() {
   const copyOutput = () => {
     if (!outputData) return;
     navigator.clipboard.writeText(outputData.payload);
+    showToast("Payload copied to clipboard!", "success");
   };
 
   return (

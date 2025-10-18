@@ -2,10 +2,12 @@
 
 import { jsonCompressor, jsonFormatter } from "@/utils/jsonFormatterUtil";
 import { useState } from "react";
+import { useToast } from "../components/toast";
 
 export default function JsonFormatterPage() {
   const [inputData, setInputData] = useState("");
   const [outputData, setOutputData] = useState("");
+  const { showToast } = useToast();
 
   const resetTextbox = () => {
     setInputData("");
@@ -24,6 +26,7 @@ export default function JsonFormatterPage() {
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputData);
+    showToast("Output copied to clipboard!", "success");
   };
 
   return (

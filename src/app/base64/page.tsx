@@ -1,10 +1,12 @@
 "use client";
 import { base64Decoder, base64Encoder } from "@/utils/base64Util";
 import { useState } from "react";
+import { useToast } from "./../components/toast";
 
 export default function Base64Page() {
   const [inputData, setInputData] = useState("");
   const [outputData, setOutputData] = useState("");
+  const { showToast } = useToast();
 
   const resetTextbox = () => {
     setInputData("");
@@ -23,7 +25,8 @@ export default function Base64Page() {
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputData);
-  }
+    showToast("Output copied to clipboard!", "success");
+  };
 
   return (
     <div className="mt-8 px-4">
@@ -79,7 +82,6 @@ export default function Base64Page() {
         >
           Copy Output
         </button>
-
       </div>
     </div>
   );

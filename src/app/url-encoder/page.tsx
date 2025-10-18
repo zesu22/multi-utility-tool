@@ -1,10 +1,12 @@
 "use client";
 import { useState } from "react";
 import { urlDecoder, urlEncoder } from "@/utils/urlEncDecUtil";
+import { useToast } from "../components/toast";
 
 export default function UrlEncoderPage() {
   const [inputData, setInputData] = useState("");
   const [outputData, setOutputData] = useState("");
+  const { showToast } = useToast();
 
   const resetTextbox = () => {
     setInputData("");
@@ -23,6 +25,7 @@ export default function UrlEncoderPage() {
 
   const copyOutput = () => {
     navigator.clipboard.writeText(outputData);
+    showToast("Output copied to clipboard!", "success");
   }
 
   return (
