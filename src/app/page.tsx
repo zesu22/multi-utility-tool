@@ -22,6 +22,11 @@ export default function Home() {
       description: "Decode and verify JSON Web Tokens",
       link: "/jwt-decoder",
     },
+    {
+      title: "Swagger Ui",
+      description: "View and interact with Swagger API documentation",
+      link: "/swagger-ui",
+    }
   ];
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
